@@ -24,7 +24,11 @@ COMMIT
 :DOCKER-ISOLATION-STAGE-2 - [0:0]
 :DOCKER-USER - [0:0]
 -A INPUT -s ${IP}/32 -p tcp -m tcp --dport 6018 -j ACCEPT
+-A INPUT -s ${IP}/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A INPUT -s ${IP}/32 -p tcp -m tcp --dport 80 -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 6018 -j DROP
+-A INPUT -p tcp -m tcp --dport 443 -j DROP
+-A INPUT -p tcp -m tcp --dport 80 -j DROP
 -A FORWARD -j DOCKER-USER
 -A FORWARD -j DOCKER-ISOLATION-STAGE-1
 -A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
